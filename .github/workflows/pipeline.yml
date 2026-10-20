@@ -1,22 +1,22 @@
-name: nombre del pipeline
+name: CI/CD
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:
-
 jobs:
-  echo-job:
-    name: Run Echo Commad
+  build-job:
+    name: Build docker image
     runs-on: self-hosted
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: Step 1 - B  asic Echo
-        run: echo "Hello! This is a simple GitHub Actions pipeline."
-
-      - name: Step Build image
+      - name: Step 2 - Build docker image
         run: docker build -t ipod-classic-image .
 
-      - name: Step 2 - Echo Current Date
-        run: 'echo "The current date and time is: $(date)"'
+  deploy-job:
+    name: Deploy to server
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy proyect
+        run: docker run -d -p 3000:3000 ipod-classic-image
