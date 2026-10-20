@@ -19,4 +19,4 @@ jobs:
 
     steps:
       - name: Deploy proyect
-        run: docker run -d -p 3000:3000 ipod-classic-image
+        run: docker run -d -P ipod-classic-image
